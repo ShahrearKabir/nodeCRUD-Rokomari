@@ -1,5 +1,6 @@
 import { Product } from "../entity/Product";
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
+// import { Category } from "../entity/Category";
 
 @Resolver()
 export class ProductResolver {
@@ -11,16 +12,23 @@ export class ProductResolver {
         @Arg("product_details") product_details: string,
         @Arg("product_image") product_image: string,
         @Arg("product_price") product_price: number,
-        @Arg("product_category") product_category: string,
+        @Arg("category" ) category: number,
         
     ){
-        await Product.insert({ product_name, brand_name, product_details, product_image, product_price, product_category })
+        await Product.insert({ product_name, brand_name, product_details, product_image, product_price, category })
         return true
     }
 
     @Query( () => [Product])
     async products(){
-        return await Product.find()
+        return await Product.find({ relations: ["category"] })     //{ relations: ["categories"] }
+    }
+
+    @Query( () => Product)
+    async productById(
+        @Arg("id", () => Int) id: number,
+    ){
+        return await Product.findOne( id , { relations: ["category"] })
     }
 
     @Mutation( () => Boolean)
@@ -31,9 +39,9 @@ export class ProductResolver {
         @Arg("product_details") product_details: string,
         @Arg("product_image") product_image: string,
         @Arg("product_price") product_price: number,
-        @Arg("product_category") product_category: string,
+        @Arg("category") category: number,
     ){
-        await Product.update( { id }, { product_name, brand_name, product_details, product_image, product_price, product_category } )
+        await Product.update( { id }, { product_name, brand_name, product_details, product_image, product_price, category } )
         return true
     }
 
