@@ -30,17 +30,8 @@ export class Product extends BaseEntity{
     @Column()
     product_price: number
 
-    // @Field()
-    // @Column()
-    // category: string
-
-    // @ManyToOne(() => Category, (category) => category.id)
-    // @JoinColumn()
-    // category: number
-
     @Field(() => Category)
     @Column('int', { nullable: true })
     @ManyToOne(() => Category, category => category.products)
-    // @JoinColumn({name: 'categoryId', referencedColumnName: 'id'})
     category: number;
 }

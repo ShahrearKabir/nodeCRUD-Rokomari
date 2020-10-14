@@ -21,7 +21,7 @@ export class ProductResolver {
 
     @Query( () => [Product])
     async products(){
-        return await Product.find({ relations: ["category"] })     //{ relations: ["categories"] }
+        return await Product.find({ relations: ["category"] }) 
     }
 
     @Query( () => Product)

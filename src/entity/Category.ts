@@ -9,15 +9,11 @@ import { Product } from "./Product";
 export class Category extends BaseEntity{
     @Field(() => Int)
     @PrimaryGeneratedColumn()
-    // @OneToMany(() => Product, product => product.category)
     id: number
 
     @Field()
     @Column()
     category_name: string
-
-    // @OneToMany(() => Product, product => product.category)
-    // product: Product[];
 
     @Field(() => [Product])
     @Column('int', { nullable: true })

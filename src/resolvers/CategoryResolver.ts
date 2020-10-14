@@ -31,7 +31,7 @@ export class CategoryResolver {
     async categoryById(
         @Arg("id", () => Int) id: number,
     ){
-        return await Category.findOne( id ,{ relations: ["products"] })       //, { relations: ["product"] }
+        return await Category.findOne( id ,{ relations: ["products"] })
     }
 
     @Mutation( () => Boolean)
