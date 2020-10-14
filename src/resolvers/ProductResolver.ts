@@ -35,7 +35,7 @@ export class ProductResolver {
     async updateProduct(
         @Arg("id", () => Int) id: number,
         @Arg("product_name") product_name: string,
-        @Arg("brand_name") brand_name: string ,
+        @Arg("brand_name") brand_name: string,
         @Arg("product_details") product_details: string,
         @Arg("product_image") product_image: string,
         @Arg("product_price") product_price: number,

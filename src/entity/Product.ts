@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from "type-graphql";
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne } from "typeorm";
 import { PrimaryGeneratedColumn } from "typeorm";
 import { Category } from "./Category";
 
@@ -34,7 +34,13 @@ export class Product extends BaseEntity{
     // @Column()
     // category: string
 
-    @ManyToOne(() => Category, category => category.id)
-    @JoinColumn()
-    category: number
+    // @ManyToOne(() => Category, (category) => category.id)
+    // @JoinColumn()
+    // category: number
+
+    @Field(() => Category)
+    @Column('int', { nullable: true })
+    @ManyToOne(() => Category, category => category.products)
+    // @JoinColumn({name: 'categoryId', referencedColumnName: 'id'})
+    category: number;
 }

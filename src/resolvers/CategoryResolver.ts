@@ -18,27 +18,27 @@ export class CategoryResolver {
         @Arg("id", () => Int) id: number,
         @Arg("category_name") category_name: string,
     ){
-        await Category.update( { id }, { category_name } )
+        await Category.update( id, { category_name } )
         return true
     }
 
     @Query( () => [Category])
     async categories(){
-        return await Category.find()
+        return await Category.find({ relations: ["products"] })
     }
 
     @Query( () => Category)
     async categoryById(
         @Arg("id", () => Int) id: number,
     ){
-        return await Category.findOne( id , { relations: ["product"] })
+        return await Category.findOne( id ,{ relations: ["products"] })       //, { relations: ["product"] }
     }
 
     @Mutation( () => Boolean)
     async deleteCategory(
         @Arg("id", () => Int) id: number,
     ){
-        await Category.delete( { id } )
+        await Category.delete( id )
         return true
     }
 }
