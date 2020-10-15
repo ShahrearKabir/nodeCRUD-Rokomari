@@ -72,23 +72,23 @@ This is a sample application for product and category
     )
   }
   
-  - Update:
-    mutation{
-      updateProduct(
-        id:2,
-        product_name: "Test Name 22", 
-        brand_name: "Test Brand 22", 
-        product_details: "Test Details 22",
-        product_image: "n/a 22",
-        product_price: 111,
-        category: 3
-      )
-    }
+- Update:
+  mutation{
+    updateProduct(
+      id:2,
+      product_name: "Test Name 22", 
+      brand_name: "Test Brand 22", 
+      product_details: "Test Details 22",
+      product_image: "n/a 22",
+      product_price: 111,
+      category: 3
+    )
+  }
 
-  - Delete:
-    mutation{
-      deleteProduct(id: 4)
-    }
+- Delete:
+  mutation{
+    deleteProduct(id: 4)
+  }
     
 - Get List:
   {
